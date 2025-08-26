@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turf Booking System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f3;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgb(248, 247, 247);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #27ae60;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #dff0d8;
+      border: 1px solid #d6e9c6;
+      border-radius: 5px;
+      color: #3c763d;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Turf Booking System</h2>
+  <div class="container">
+    <form id="bookingForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required pattern="[0-9]{10}">
+
+      <label for="date">Booking Date:</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Select Time Slot:</label>
+      <select id="time" required>
+        <option value="">--Choose a slot--</option>
+        <option value="6AM - 7AM">6AM - 7AM</option>
+        <option value="7AM - 8AM">7AM - 8AM</option>
+        <option value="8AM - 9AM">8AM - 9AM</option>
+        <option value="5PM - 6PM">5PM - 6PM</option>
+        <option value="6PM - 7PM">6PM - 7PM</option>
+        <option value="7PM - 8PM">7PM - 8PM</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+
+    <div class="confirmation" id="confirmationBox">
+      ✅ Booking Confirmed! Thank you, <span id="userName"></span>.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmationBox = document.getElementById('confirmationBox');
+    const userNameSpan = document.getElementById('userName');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      // Simulate storing to database (you can later connect to backend here)
+      console.log(`Booking Details:
+        Name: ${name}
+        Phone: ${phone}
+        Date: ${date}
+        Time: ${time}`);
+
+      // Show confirmation
+      userNameSpan.textContent = name;
+      confirmationBox.style.display = 'block';
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
